@@ -1,0 +1,13 @@
+npm i -D prisma
+npm i @prisma/client
+npx prisma init
+npx prisma generate
+npx prisma db push
+npm install @auth/prisma-adapter
+
+localhost:3000/api/auth/providers
+openssl rand -hex 32 (bash)
+
+npx prisma studio
+
+npx prisma migrate reset
