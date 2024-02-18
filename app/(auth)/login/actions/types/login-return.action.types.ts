@@ -1,4 +1,4 @@
-export type LoginReturnType = {
+export type LoginActionReturnType = {
   error?: string;
   success?: string;
 };

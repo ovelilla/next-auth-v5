@@ -13,8 +13,12 @@ import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error/form-error.component";
 import { FormSuccess } from "@/components/form-success/form-success.component";
 import { Input } from "@/components/ui/input";
+// Constants
+import constants from "../../../constants/auth.constants";
 // Hooks
 import LoginHook from "../../hooks/login.hook";
+// Icons
+import { LuLoader2 } from "react-icons/lu";
 // Types
 import { LoginFormPropsType } from "./types/login-form-props.types";
 
@@ -24,7 +28,7 @@ export const LoginForm = ({
   fieldEmail,
   fieldPassword,
 }: LoginFormPropsType): React.ReactElement => {
-  const { errorMessage, form, handleSubmit, isLoading, successMessage } =
+  const { errorMessage, form, handleSubmit, loading, successMessage } =
     LoginHook();
 
   return (
@@ -40,7 +44,7 @@ export const LoginForm = ({
                 <FormControl>
                   <Input
                     {...field}
-                    disabled={isLoading}
+                    disabled={loading.status}
                     placeholder={fieldEmail.placeholder}
                     type="email"
                   />
@@ -58,7 +62,7 @@ export const LoginForm = ({
                 <FormControl>
                   <Input
                     {...field}
-                    disabled={isLoading}
+                    disabled={loading.status}
                     placeholder={fieldPassword.placeholder}
                     type="password"
                   />
@@ -71,8 +75,13 @@ export const LoginForm = ({
         </div>
         <FormError message={errorMessage} />
         <FormSuccess message={successMessage} />
-        <Button disabled={isLoading} type="submit" className="w-full">
-          {buttonSubmit.label}
+        <Button disabled={loading.status} type="submit" className="w-full">
+          {loading.status &&
+          loading.provider === constants.PROVIDERS.credentials ? (
+            <LuLoader2 className="mr-2 h-5 w-5 animate-spin" />
+          ) : (
+            buttonSubmit.label
+          )}
         </Button>
       </form>
     </Form>

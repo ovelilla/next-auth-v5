@@ -9,13 +9,13 @@ import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 // Schemas
 import { LoginSchema } from "../schemas/login.schema";
 // Types
-import { LoginPropsType } from "./types/login-props.actions.types";
-import { LoginReturnType } from "./types/login-return.actions.types";
+import { LoginActionPropsType } from "./types/login-props.action.types";
+import { LoginActionReturnType } from "./types/login-return.action.types";
 
 export const loginAction = async ({
   values,
-  callbackUrl,
-}: LoginPropsType): Promise<LoginReturnType | undefined> => {
+  urlCallback,
+}: LoginActionPropsType): Promise<LoginActionReturnType | undefined> => {
   const validatedFields = LoginSchema.safeParse(values);
 
   if (!validatedFields.success) {
@@ -25,20 +25,20 @@ export const loginAction = async ({
   const { email, password } = validatedFields.data;
 
   try {
-    const existingUser = await db.user.findUnique({
+    const user = await db.user.findUnique({
       where: {
         email,
       },
     });
 
-    if (!existingUser || !existingUser.email || !existingUser.password) {
+    if (!user || !user.email || !user.password) {
       return { error: "Email does not exist!" };
     }
 
     await signIn("credentials", {
       email,
       password,
-      redirectTo: DEFAULT_LOGIN_REDIRECT,
+      redirectTo: urlCallback || DEFAULT_LOGIN_REDIRECT,
     });
   } catch (error) {
     if (error instanceof AuthError && error.type === "CredentialsSignin") {

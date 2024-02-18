@@ -28,6 +28,9 @@ const constants = {
       placeholder: "******",
     },
   },
+  OAUTH_ACCOUNT_NOT_LINKED: "OAuthAccountNotLinked",
+  OAUTH_ACCOUNT_NOT_LINKED_ERROR:
+    "Email already in use with different provider!",
 };
 
 export default constants;

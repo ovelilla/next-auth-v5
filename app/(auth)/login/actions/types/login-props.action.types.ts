@@ -1,7 +1,7 @@
 // Types
 import { LoginFormValuesType } from "../../types/login-form-values.type";
 
-export type LoginPropsType = {
+export type LoginActionPropsType = {
   values: LoginFormValuesType;
-  callbackUrl?: string | null;
+  urlCallback?: string | null;
 };

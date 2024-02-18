@@ -1,5 +1,7 @@
 // Actions
 import { loginAction } from "../actions/login.actions";
+// Constants
+import constants from "../../constants/auth.constants";
 // Types
 import { LoginFormValuesType } from "../types/login-form-values.type";
 import { LoginHandlersPropsType } from "./types/login-handlers-props.type";
@@ -10,17 +12,16 @@ const submitHandler = async ({
   form,
   setErrorMessage,
   setSuccessMessage,
-  setIsLoading,
+  setLoading,
+  urlCallback,
   values,
 }: SubmitHandlerPropsType): Promise<void> => {
-  const callbackUrl = "/dashboard";
-
   setErrorMessage("");
   setSuccessMessage("");
-  setIsLoading(true);
+  setLoading({ provider: constants.PROVIDERS.credentials, status: true });
 
   try {
-    const data = await loginAction({ values, callbackUrl });
+    const data = await loginAction({ values, urlCallback });
 
     if (data?.error) {
       setErrorMessage(data.error);
@@ -33,7 +34,7 @@ const submitHandler = async ({
     setErrorMessage("Something went wrong");
   } finally {
     form.reset();
-    setIsLoading(false);
+    setLoading({ provider: constants.PROVIDERS.credentials, status: false });
   }
 };
 
@@ -41,7 +42,8 @@ const LoginHandlers = ({
   form,
   setErrorMessage,
   setSuccessMessage,
-  setIsLoading,
+  setLoading,
+  urlCallback,
 }: LoginHandlersPropsType): LoginHandlersReturnType => {
   return {
     handleSubmit: (values: LoginFormValuesType) =>
@@ -49,7 +51,8 @@ const LoginHandlers = ({
         form,
         setErrorMessage,
         setSuccessMessage,
-        setIsLoading,
+        setLoading,
+        urlCallback,
         values,
       }),
   };

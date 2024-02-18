@@ -1,5 +1,7 @@
 // Actions
 import { registerAction } from "../actions/register.actions";
+// Constants
+import constants from "../../constants/auth.constants";
 // Types
 import { RegisterFormValuesType } from "../types/register-form-values.type";
 import { RegisterHandlersPropsType } from "./types/register-handlers-props.type";
@@ -10,15 +12,14 @@ const submitHandler = async ({
   form,
   setErrorMessage,
   setSuccessMessage,
-  setIsLoading,
+  setLoading,
   values,
 }: SubmitHandlerPropsType): Promise<void> => {
-  
   const callbackUrl = "/dashboard";
 
   setErrorMessage("");
   setSuccessMessage("");
-  setIsLoading(true);
+  setLoading({ provider: constants.PROVIDERS.credentials, status: true });
 
   try {
     const data = await registerAction({ values, callbackUrl });
@@ -32,7 +33,7 @@ const submitHandler = async ({
     setErrorMessage("Something went wrong");
   } finally {
     form.reset();
-    setIsLoading(false);
+    setLoading({ provider: constants.PROVIDERS.credentials, status: false });
   }
 };
 
@@ -40,7 +41,7 @@ const RegisterHandlers = ({
   form,
   setErrorMessage,
   setSuccessMessage,
-  setIsLoading,
+  setLoading,
 }: RegisterHandlersPropsType): RegisterHandlersReturnType => {
   return {
     handleSubmit: (values: RegisterFormValuesType) =>
@@ -48,7 +49,7 @@ const RegisterHandlers = ({
         form,
         setErrorMessage,
         setSuccessMessage,
-        setIsLoading,
+        setLoading,
         values,
       }),
   };
