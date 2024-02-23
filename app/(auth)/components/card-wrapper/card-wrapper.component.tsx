@@ -18,7 +18,7 @@ export const CardWrapper = ({
   header,
   showSocial,
 }: CardWrapperPropsType): React.ReactElement => (
-  <Card className="w-[400px]">
+  <Card className="w-[400px] sm:m-auto">
     <CardHeader>
       <Header {...header} />
     </CardHeader>

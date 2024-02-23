@@ -11,6 +11,9 @@ import { LoginSchema } from "../schemas/login.schema";
 // Types
 import { LoginActionPropsType } from "./types/login-props.action.types";
 import { LoginActionReturnType } from "./types/login-return.action.types";
+// Utils
+import { generateVerificationToken } from "../../utils/token/generate-verification-token.util";
+import { sendVerificationEmail } from "../../utils/email/send-verification-token.util";
 
 export const loginAction = async ({
   values,
@@ -25,14 +28,27 @@ export const loginAction = async ({
   const { email, password } = validatedFields.data;
 
   try {
-    const user = await db.user.findUnique({
+    const existingUser = await db.user.findUnique({
       where: {
         email,
       },
     });
 
-    if (!user || !user.email || !user.password) {
+    if (!existingUser || !existingUser.email || !existingUser.password) {
       return { error: "Email does not exist!" };
+    }
+
+    if (!existingUser.emailVerified) {
+      const verificationToken = await generateVerificationToken(
+        existingUser.email
+      );
+
+      await sendVerificationEmail(
+        verificationToken.email,
+        verificationToken.token
+      );
+
+      return { success: "Confirmation email sent!" };
     }
 
     await signIn("credentials", {

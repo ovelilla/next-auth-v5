@@ -7,6 +7,9 @@ import { db } from "@/lib/db";
 import { RegisterSchema } from "../schemas/register.schema";
 // Types
 import { RegisterPropsType } from "./types/register-props.actions.types";
+// Utils
+import { generateVerificationToken } from "../../utils/token/generate-verification-token.util";
+import { sendVerificationEmail } from "../../utils/email/send-verification-token.util";
 
 export const registerAction = async ({
   values,
@@ -39,6 +42,13 @@ export const registerAction = async ({
         password: hashedPassword,
       },
     });
+
+    const verificationToken = await generateVerificationToken(email);
+
+    await sendVerificationEmail(
+      verificationToken.email,
+      verificationToken.token
+    );
 
     return { success: "Confirmation email sent!" };
   } catch (error) {

@@ -1,5 +1,5 @@
 // Actions
-import { registerAction } from "../actions/register.actions";
+import { registerAction } from "../actions/register.action";
 // Constants
 import constants from "../../constants/auth.constants";
 // Types

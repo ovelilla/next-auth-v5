@@ -8,12 +8,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Alert } from "@/components/alert/alert.component";
 import { Button } from "@/components/ui/button";
-import { FormError } from "@/components/form-error/form-error.component";
-import { FormSuccess } from "@/components/form-success/form-success.component";
 import { Input } from "@/components/ui/input";
 // Constants
-import constants from "../../../constants/auth.constants";
+import authConstants from "../../../constants/auth.constants";
+import registerConstants from "../../constants/register.constants";
 // Hooks
 import RegisterHook from "../../hooks/register.hook";
 // Icons
@@ -70,11 +70,17 @@ export const RegisterForm = ({
             )}
           />
         </div>
-        <FormError message={errorMessage} />
-        <FormSuccess message={successMessage} />
+        <Alert
+          {...registerConstants.ALERT_ERROR_PROPS}
+          {...{ message: errorMessage }}
+        />
+        <Alert
+          {...registerConstants.ALERT_SUCCESS_PROPS}
+          {...{ message: successMessage }}
+        />
         <Button disabled={loading.status} type="submit" className="w-full">
           {loading.status &&
-          loading.provider === constants.PROVIDERS.credentials ? (
+          loading.provider === authConstants.PROVIDERS.credentials ? (
             <LuLoader2 className="mr-2 h-5 w-5 animate-spin" />
           ) : (
             buttonSubmit.label

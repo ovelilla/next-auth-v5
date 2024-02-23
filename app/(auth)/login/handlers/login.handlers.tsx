@@ -1,5 +1,5 @@
 // Actions
-import { loginAction } from "../actions/login.actions";
+import { loginAction } from "../actions/login.action";
 // Constants
 import constants from "../../constants/auth.constants";
 // Types
