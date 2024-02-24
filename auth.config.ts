@@ -7,7 +7,7 @@ import type { NextAuthConfig } from "next-auth";
 // Libs
 import { db } from "@/lib/db";
 // Schemas
-import { LoginSchema } from "@/app/(auth)/login/schemas/login.schema";
+import { LoginSchema } from "@/app/(auth)/(pages)/login/schemas/login.schema";
 
 export default {
   providers: [

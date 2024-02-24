@@ -29,13 +29,13 @@ export const Alert = ({
     right: "justify-end",
   };
 
-  const fullwidthClasses = fullWidth ? "w-full" : "";
+  const fullWidthClasses = fullWidth ? "w-full" : "";
 
   if (!message) return null;
 
   return (
     <div
-      className={`flex ${alignmentclasses[alignment]} items-center gap-x-2 py-3 px-4 rounded-md text-sm ${colorClasses[type]} ${fullwidthClasses}`}
+      className={`flex ${alignmentclasses[alignment]} items-center gap-x-2 py-3 px-4 rounded-md text-sm ${colorClasses[type]} ${fullWidthClasses}`}
     >
       {type === AlertType.Error && <LuAlertCircle className="h-4 w-4" />}
       {type === AlertType.Info && <LuInfo className="h-4 w-4" />}

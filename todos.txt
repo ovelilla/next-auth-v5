@@ -1,0 +1,1 @@
+- Verification shows both error and success messages
