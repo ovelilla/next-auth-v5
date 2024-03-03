@@ -1,13 +1,15 @@
 // Vendors
 import { Resend } from "resend";
+// Types
+import { SendVerificationTokenEmailPropsType } from "./types/send-verification-token-email-props.type";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 // const domain = process.env.NEXT_PUBLIC_APP_URL;
 
-export const sendVerificationEmail = async (
-  email: string,
-  token: string
-): Promise<void> => {
+export const sendVerificationTokenEmail = async ({
+  email,
+  token,
+}: SendVerificationTokenEmailPropsType): Promise<void> => {
   // const confirmLink = `${domain}/verification?token=${token}`;
   const confirmLink = `http://localhost:3000/verification?token=${token}`;
 

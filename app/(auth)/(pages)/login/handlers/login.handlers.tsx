@@ -12,6 +12,7 @@ import { ToggleShowPasswordHandlerPropsType } from "./types/toggle-show-password
 const submitHandler = async ({
   form,
   setErrorMessage,
+  setShowTwoFactor,
   setSuccessMessage,
   setLoading,
   urlCallback,
@@ -23,18 +24,20 @@ const submitHandler = async ({
 
   try {
     const data = await loginAction({ values, urlCallback });
-
     if (data?.error) {
       setErrorMessage(data.error);
+      form.reset();
     }
-
     if (data?.success) {
       setSuccessMessage(data.success);
+      form.reset();
+    }
+    if (data?.twoFactor) {
+      setShowTwoFactor(true);
     }
   } catch (error) {
     setErrorMessage("Something went wrong");
   } finally {
-    form.reset();
     setLoading({ provider: constants.PROVIDERS.credentials, status: false });
   }
 };
@@ -50,6 +53,7 @@ const LoginHandlers = ({
   form,
   setErrorMessage,
   setShowPassword,
+  setShowTwoFactor,
   setSuccessMessage,
   setLoading,
   showPassword,
@@ -60,6 +64,7 @@ const LoginHandlers = ({
       submitHandler({
         form,
         setErrorMessage,
+        setShowTwoFactor,
         setSuccessMessage,
         setLoading,
         urlCallback,

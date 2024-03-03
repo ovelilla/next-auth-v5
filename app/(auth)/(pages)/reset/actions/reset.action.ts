@@ -33,10 +33,10 @@ export const resetAction = async ({
 
   const passwordResetToken = await generatePasswordResetToken(email);
 
-  await sendResetPasswordEmail(
-    passwordResetToken.email,
-    passwordResetToken.token
-  );
+  await sendResetPasswordEmail({
+    email: passwordResetToken.email,
+    token: passwordResetToken.token,
+  });
 
   return { success: "Reset email sent" };
 };

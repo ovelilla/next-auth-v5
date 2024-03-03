@@ -41,23 +41,23 @@ export const {
         return false;
       }
 
-      // if (!existingUser.isTwoFactorEnabled) {
-      //   return true;
-      // }
+      if (!existingUser.isTwoFactorEnabled) {
+        return true;
+      }
 
-      // const twoFactorConfirmation = await db.twoFactorConfirmation.findFirst({
-      //   where: {
-      //     userId: existingUser.id,
-      //   },
-      // });
+      const twoFactorConfirmation = await db.twoFactorConfirmation.findUnique({
+        where: {
+          userId: existingUser.id,
+        },
+      });
 
-      // if (!twoFactorConfirmation) {
-      //   return false;
-      // }
+      if (!twoFactorConfirmation) {
+        return false;
+      }
 
-      // await db.twoFactorConfirmation.delete({
-      //   where: { id: twoFactorConfirmation.id },
-      // });
+      await db.twoFactorConfirmation.delete({
+        where: { id: twoFactorConfirmation.id },
+      });
 
       return true;
     },
@@ -70,15 +70,15 @@ export const {
         session.user.role = token.role as UserRole;
       }
 
-      // if (session.user) {
-      //   session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as boolean;
-      // }
+      if (session.user) {
+        session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as boolean;
+      }
 
-      // if (session.user) {
-      //   session.user.name = token.name;
-      //   session.user.email = token.email;
-      //   session.user.isOAuth = token.isOAuth as boolean;
-      // }
+      if (session.user) {
+        session.user.name = token.name;
+        session.user.email = token.email as string;
+        session.user.isOAuth = token.isOAuth as boolean;
+      }
 
       return session;
     },
@@ -108,7 +108,7 @@ export const {
       token.email = existingUser.email;
       token.role = existingUser.role;
       token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
-
+      
       return token;
     },
   },

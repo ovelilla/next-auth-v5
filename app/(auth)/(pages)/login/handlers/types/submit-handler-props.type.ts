@@ -8,6 +8,7 @@ import { LoginFormValuesType } from "../../types/login-form-values.type";
 export type SubmitHandlerPropsType = {
   form: UseFormReturn<LoginFormValuesType>;
   setErrorMessage: Dispatch<SetStateAction<string>>;
+  setShowTwoFactor: Dispatch<SetStateAction<boolean>>;
   setSuccessMessage: Dispatch<SetStateAction<string>>;
   setLoading: AuthStoreType["setLoading"];
   urlCallback: string | null;

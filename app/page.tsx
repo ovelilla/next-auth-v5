@@ -12,7 +12,7 @@ const Home = (): React.ReactElement => {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center h-full">
+    <div className="flex sm:items-center justify-center w-full h-full p-4">
       <div className="flex flex-col gap-y-2">
         <h1 className="text-4xl font-semibold">Auth</h1>
         <p>A simple authentication service</p>
@@ -20,7 +20,7 @@ const Home = (): React.ReactElement => {
           <Button onClick={handleOnClick}>Sign in</Button>
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 

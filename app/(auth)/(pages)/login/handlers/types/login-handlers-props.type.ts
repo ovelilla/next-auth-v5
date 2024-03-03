@@ -9,6 +9,7 @@ export type LoginHandlersPropsType = {
   form: UseFormReturn<LoginFormValuesType>;
   setErrorMessage: Dispatch<SetStateAction<string>>;
   setShowPassword: Dispatch<SetStateAction<boolean>>;
+  setShowTwoFactor: Dispatch<SetStateAction<boolean>>;
   setSuccessMessage: Dispatch<SetStateAction<string>>;
   setLoading: AuthStoreType["setLoading"];
   showPassword: boolean;

@@ -11,5 +11,6 @@ export type LoginHookReturnType = {
   handleToggleShowPassword: () => void;
   loading: AuthStoreType["loading"];
   showPassword: boolean;
+  showTwoFactor: boolean;
   successMessage: string;
 };

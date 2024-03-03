@@ -10,7 +10,7 @@ import { RegisterActionPropsType } from "./types/register-props.action.types";
 import { RegisterActionReturnType } from "./types/register-return.action.types";
 // Utils
 import { generateVerificationToken } from "../../../utils/token/generate-verification-token.util";
-import { sendVerificationEmail } from "../../../utils/email/send-verification-token.util";
+import { sendVerificationTokenEmail } from "../../../utils/email/send-verification-token-email.util";
 
 export const registerAction = async ({
   values,
@@ -44,7 +44,10 @@ export const registerAction = async ({
 
   const verificationToken = await generateVerificationToken(email);
 
-  await sendVerificationEmail(verificationToken.email, verificationToken.token);
+  await sendVerificationTokenEmail({
+    email: verificationToken.email,
+    token: verificationToken.token,
+  });
 
   return { success: "Confirmation email sent" };
 };

@@ -1,13 +1,13 @@
 const constants = {
   CARD_WRAPPER_PROPS: {
-    header: {
-      title: "Login",
-      description: "Welcome back",
-    },
     buttonLink: {
       fullWidth: true,
       href: "/register",
       label: "Don't have an account?",
+    },
+    header: {
+      title: "Login",
+      description: "Welcome back",
     },
     showSocial: true,
   },

@@ -27,12 +27,16 @@ export const LoginForm = (): React.ReactElement => {
     handleSubmit,
     loading,
     showPassword,
+    showTwoFactor,
     successMessage,
   } = LoginHook();
 
   const passwordType = showPassword
-    ? constants.TYPE_FIELD_PASSWORD_VISIBLE
-    : constants.TYPE_FIELD_PASSWORD_HIDDEN;
+    ? constants.FIELD_PASSWORD_TYPE_VISIBLE
+    : constants.FIELD_PASSWORD_TYPE_HIDDEN;
+  const submitLabel = showTwoFactor
+    ? constants.BUTTON_SUBMIT_LABEL_TWO_FACTOR
+    : constants.BUTTON_SUBMIT_LABEL_DEFAULT;
   const submitLoading =
     loading.status && loading.provider === authConstants.PROVIDERS.credentials;
 
@@ -40,49 +44,81 @@ export const LoginForm = (): React.ReactElement => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
         <div className="space-y-4">
-          <FormField
-            control={form.control}
-            name={constants.FIELD_EMAIL_PROPS.name}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{constants.FIELD_EMAIL_PROPS.label}</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    disabled={loading.status}
-                    placeholder={constants.FIELD_EMAIL_PROPS.placeholder}
-                    type={constants.FIELD_EMAIL_PROPS.type}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name={constants.FIELD_PASSWORD_PROPS.name}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{constants.FIELD_PASSWORD_PROPS.label}</FormLabel>
-                <FormControl>
-                  <div className="relative">
+          {showTwoFactor && (
+            <FormField
+              control={form.control}
+              name={constants.FIELD_TWO_FACTOR_PROPS.name}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    {constants.FIELD_TWO_FACTOR_PROPS.label}
+                  </FormLabel>
+                  <FormControl>
                     <Input
                       {...field}
                       disabled={loading.status}
-                      placeholder={constants.FIELD_PASSWORD_PROPS.placeholder}
-                      type={passwordType}
-                      className="pr-12"
+                      placeholder={constants.FIELD_TWO_FACTOR_PROPS.placeholder}
+                      type={constants.FIELD_TWO_FACTOR_PROPS.type}
                     />
-                    <TogglePasswordButton
-                      {...{ handleToggleShowPassword, showPassword }}
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
+          {!showTwoFactor && (
+            <>
+              <FormField
+                control={form.control}
+                name={constants.FIELD_EMAIL_PROPS.name}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{constants.FIELD_EMAIL_PROPS.label}</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={loading.status}
+                        placeholder={constants.FIELD_EMAIL_PROPS.placeholder}
+                        type={constants.FIELD_EMAIL_PROPS.type}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name={constants.FIELD_PASSWORD_PROPS.name}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {constants.FIELD_PASSWORD_PROPS.label}
+                    </FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <Input
+                          {...field}
+                          disabled={loading.status}
+                          placeholder={
+                            constants.FIELD_PASSWORD_PROPS.placeholder
+                          }
+                          type={passwordType}
+                          className="pr-12"
+                        />
+                        <TogglePasswordButton
+                          {...{ handleToggleShowPassword, showPassword }}
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                    <ButtonLink
+                      {...constants.BUTTON_LINK_FORGOT_PASSWORD_PROPS}
                     />
-                  </div>
-                </FormControl>
-                <FormMessage />
-                <ButtonLink {...constants.BUTTON_LINK_FORGOT_PASSWORD_PROPS} />
-              </FormItem>
-            )}
-          />
+                  </FormItem>
+                )}
+              />
+            </>
+          )}
         </div>
         <Alert
           {...constants.ALERT_ERROR_PROPS}
@@ -94,7 +130,7 @@ export const LoginForm = (): React.ReactElement => {
         />
         <ButtonLoading
           {...constants.BUTTON_SUBMIT_PROPS}
-          {...{ loading: submitLoading }}
+          {...{ loading: submitLoading, label: submitLabel }}
         />
       </form>
     </Form>

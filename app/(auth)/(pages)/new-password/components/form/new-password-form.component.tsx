@@ -29,8 +29,8 @@ export const NewPasswordForm = (): React.ReactElement => {
   } = NewPasswordHook();
 
   const passwordType = showPassword
-    ? constants.TYPE_FIELD_PASSWORD_VISIBLE
-    : constants.TYPE_FIELD_PASSWORD_HIDDEN;
+    ? constants.FIELD_PASSWORD_TYPE_VISIBLE
+    : constants.FIELD_PASSWORD_TYPE_HIDDEN;
 
   return (
     <Form {...form}>

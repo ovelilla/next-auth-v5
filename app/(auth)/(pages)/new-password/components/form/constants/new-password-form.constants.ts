@@ -19,8 +19,8 @@ const constants = {
     name: "password",
     placeholder: "******",
   },
-  TYPE_FIELD_PASSWORD_VISIBLE: "text",
-  TYPE_FIELD_PASSWORD_HIDDEN: "password",
+  FIELD_PASSWORD_TYPE_VISIBLE: "text",
+  FIELD_PASSWORD_TYPE_HIDDEN: "password",
 } as const;
 
 export default constants;

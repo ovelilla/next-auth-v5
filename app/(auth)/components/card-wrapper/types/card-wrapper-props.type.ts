@@ -1,5 +1,5 @@
 export type CardWrapperPropsType = {
-  buttonLink: {
+  buttonLink?: {
     fullWidth?: boolean;
     href: string;
     label: string;

@@ -28,8 +28,6 @@ export const CardWrapper = ({
         <Social />
       </CardFooter>
     )}
-    <CardFooter>
-      <ButtonLink {...buttonLink} />
-    </CardFooter>
+    <CardFooter>{buttonLink && <ButtonLink {...buttonLink} />}</CardFooter>
   </Card>
 );

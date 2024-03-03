@@ -18,6 +18,7 @@ import { LoginHookReturnType } from "./types/login-hook-return.type";
 const LoginHook = (): LoginHookReturnType => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showTwoFactor, setShowTwoFactor] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string>("");
 
   const { loading, setLoading } = useAuthStore();
@@ -31,6 +32,7 @@ const LoginHook = (): LoginHookReturnType => {
     defaultValues: {
       email: "",
       password: "",
+      code: "",
     },
   });
 
@@ -39,6 +41,7 @@ const LoginHook = (): LoginHookReturnType => {
     setErrorMessage,
     setLoading,
     setShowPassword,
+    setShowTwoFactor,
     setSuccessMessage,
     showPassword,
     urlCallback,
@@ -57,6 +60,7 @@ const LoginHook = (): LoginHookReturnType => {
     handleToggleShowPassword,
     loading,
     showPassword,
+    showTwoFactor,
     successMessage,
   };
 };

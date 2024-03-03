@@ -19,19 +19,25 @@ const constants = {
     name: "password",
     placeholder: "******",
   },
-  TYPE_FIELD_PASSWORD_VISIBLE: "text",
-  TYPE_FIELD_PASSWORD_HIDDEN: "password",
+  FIELD_PASSWORD_TYPE_VISIBLE: "text",
+  FIELD_PASSWORD_TYPE_HIDDEN: "password",
+  FIELD_TWO_FACTOR_PROPS: {
+    label: "Two Factor Code",
+    name: "code",
+    placeholder: "123456",
+    type: "text",
+  },
   BUTTON_LINK_FORGOT_PASSWORD_PROPS: {
     href: "/reset",
     label: "Forgot password?",
   },
   BUTTON_SUBMIT_PROPS: {
     fullWidth: true,
-    label: "Login",
     showLabel: false,
     type: "submit",
   },
-  
+  BUTTON_SUBMIT_LABEL_DEFAULT: "Login",
+  BUTTON_SUBMIT_LABEL_TWO_FACTOR: "Confirm",
 } as const;
 
 export default constants;
