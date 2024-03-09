@@ -1,5 +1,5 @@
 const constants = {
-  LOGO_LABEL: "STORE",
+  LOGO_LABEL: "AUTH",
   LOGO_PATH: "/",
 } as const;
 
