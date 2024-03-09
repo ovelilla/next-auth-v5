@@ -1,26 +1,14 @@
-"use client";
-// Vendors
-import { useRouter } from "next/navigation";
 // Components
-import { Button } from "@/components/ui/button";
+import { Container } from "@/components/container/container.component";
 
 const Home = (): React.ReactElement => {
-  const router = useRouter();
-
-  const handleOnClick = () => {
-    router.push("/login");
-  };
-
   return (
-    <div className="flex sm:items-center justify-center w-full h-full p-4">
-      <div className="flex flex-col gap-y-2">
-        <h1 className="text-4xl font-semibold">Auth</h1>
-        <p>A simple authentication service</p>
-        <div>
-          <Button onClick={handleOnClick}>Sign in</Button>
-        </div>
+    <Container>
+      <div className="flex flex-col grow py-4">
+        <h1>Index</h1>
+        <p>Index page content</p>
       </div>
-    </div>
+    </Container>
   );
 };
 

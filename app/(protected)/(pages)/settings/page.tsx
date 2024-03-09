@@ -1,14 +1,21 @@
 "use client";
-// Auth
-import { useSession } from "next-auth/react";
-// Hooks
-import { useCurrentUser } from "@/hooks/use-current-user";
+// Components
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { SettingsForm } from "./components/settings-form.component";
 
 const SettingsPage = () => {
-  const user = useCurrentUser();
-  const session = useSession();
-
-  return <div></div>;
+  return (
+    <div className="flex justify-center">
+      <Card className="max-w-[600px] w-full">
+        <CardHeader>
+          <p className="text-2xl font-semibold text-center">⚙️ Settings</p>
+        </CardHeader>
+        <CardContent>
+          <SettingsForm />
+        </CardContent>
+      </Card>
+    </div>
+  );
 };
 
 export default SettingsPage;

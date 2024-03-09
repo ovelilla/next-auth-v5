@@ -1,3 +1,3 @@
 export type VerificationHandlersReturnType = {
-  handleLoad: () => void;
+  handleLoad: VoidFunction;
 };

@@ -1,3 +1,3 @@
 export type HeaderHandlersReturnType = {
-  handleNavigationMenuLinkClick: () => void;
+  handleNavigationMenuLinkClick: VoidFunction;
 };

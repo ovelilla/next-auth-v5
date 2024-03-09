@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/drawer";
 import { Logo } from "../logo/logo.component";
 import { NavigationMenu } from "../navigation-menu/navigation-menu.component";
+import { Separator } from "@/components/ui/separator"
 // Constants
 import constants from "./constants/mobile-drawer.constants";
 import headerConstants from "../../constants/header.constants";
@@ -47,6 +48,7 @@ export const MobileDrawer = () => {
             </Button>
           </DrawerClose>
         </DrawerHeader>
+        <Separator />
         <NavigationMenu
           {...constants.NAVIGATION_MENU_MOBILE_PROPS}
           {...{ items, setOpen }}

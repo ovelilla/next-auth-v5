@@ -1,12 +1,13 @@
-interface ProtectedLayoutProps {
-  children: React.ReactNode;
-}
+// Components
+import { Container } from "@/components/container/container.component";
+// Types
+import { LayoutPropsType } from "./types/layout-props.type";
 
-const ProtectedLayout = ({ children }: ProtectedLayoutProps) => {
+const ProtectedLayout = ({ children }: LayoutPropsType): React.ReactElement => {
   return (
-    <div className="h-full w-full">
-      {children}
-    </div>
+    <Container>
+      <div className="flex flex-col grow py-4 sm:py-6 lg:py-8">{children}</div>
+    </Container>
   );
 };
 

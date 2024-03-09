@@ -4,7 +4,12 @@ import Link from "next/link";
 import constants from "./constants/logo.constants";
 
 export const Logo = () => (
-  <div className="text-xl font-bold">
-    <Link href={constants.LOGO_PATH}>{constants.LOGO_LABEL}</Link>
+  <div className="flex h-10">
+    <Link
+      href={constants.LOGO_PATH}
+      className="flex items-center justify-center self-stretch text-xl font-bold"
+    >
+      {constants.LOGO_LABEL}
+    </Link>
   </div>
 );

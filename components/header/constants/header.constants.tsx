@@ -10,17 +10,17 @@ const loggedInNavigationMenuItems = [
   {
     icon: LuServer,
     label: "Server",
-    path: "/",
+    path: "/server",
   },
   {
     icon: LuComputer,
     label: "Client",
-    path: "/about",
+    path: "/client",
   },
   {
     icon: LuKeyRound,
     label: "Admin",
-    path: "/contact",
+    path: "/admin",
   },
   {
     icon: LuSettings,

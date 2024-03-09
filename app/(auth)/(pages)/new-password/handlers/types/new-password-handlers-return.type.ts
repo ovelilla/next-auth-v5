@@ -3,5 +3,5 @@ import { NewPasswordFormValuesType } from "../../types/new-password-form-values.
 
 export type NewPasswordHandlersReturnType = {
   handleSubmit: (values: NewPasswordFormValuesType) => void;
-  handleToggleShowPassword: () => void;
+  handleToggleShowPassword: VoidFunction;
 };

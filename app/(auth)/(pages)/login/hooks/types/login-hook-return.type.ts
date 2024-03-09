@@ -8,7 +8,7 @@ export type LoginHookReturnType = {
   errorMessage: string;
   form: UseFormReturn<LoginFormValuesType>;
   handleSubmit: (values: LoginFormValuesType) => void;
-  handleToggleShowPassword: () => void;
+  handleToggleShowPassword: VoidFunction;
   loading: AuthStoreType["loading"];
   showPassword: boolean;
   showTwoFactor: boolean;

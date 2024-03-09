@@ -2,6 +2,7 @@
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
+import { Toaster } from "@/components/ui/sonner";
 // Auth
 import { auth } from "@/auth";
 // Components
@@ -31,6 +32,7 @@ export default async function RootLayout({
             <Header />
             <main className="flex grow">{children}</main>
           </div>
+          <Toaster />
         </body>
       </html>
     </SessionProvider>

@@ -7,7 +7,7 @@ export type NewPasswordHookReturnType = {
   errorMessage: string;
   form: UseFormReturn<NewPasswordFormValuesType>;
   handleSubmit: (values: NewPasswordFormValuesType) => void;
-  handleToggleShowPassword: () => void;
+  handleToggleShowPassword: VoidFunction;
   loading: boolean;
   successMessage: string;
   showPassword: boolean;

@@ -8,7 +8,7 @@ export type RegisterHookReturnType = {
   errorMessage: string;
   form: UseFormReturn<RegisterFormValuesType>;
   handleSubmit: (values: RegisterFormValuesType) => void;
-  handleToggleShowPassword: () => void;
+  handleToggleShowPassword: VoidFunction;
   loading: AuthStoreType["loading"];
   showPassword: boolean;
   successMessage: string;
