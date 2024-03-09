@@ -15,7 +15,6 @@ const submitHandler = async ({
   setShowTwoFactor,
   setSuccessMessage,
   setLoading,
-  urlCallback,
   values,
 }: SubmitHandlerPropsType): Promise<void> => {
   setErrorMessage("");
@@ -23,7 +22,7 @@ const submitHandler = async ({
   setLoading({ provider: constants.PROVIDERS.credentials, status: true });
 
   try {
-    const data = await loginAction({ values, urlCallback });
+    const data = await loginAction({ values });
     if (data?.error) {
       setErrorMessage(data.error);
       form.reset();
@@ -57,7 +56,6 @@ const LoginHandlers = ({
   setSuccessMessage,
   setLoading,
   showPassword,
-  urlCallback,
 }: LoginHandlersPropsType): LoginHandlersReturnType => {
   return {
     handleSubmit: (values: LoginFormValuesType) =>
@@ -67,7 +65,6 @@ const LoginHandlers = ({
         setShowTwoFactor,
         setSuccessMessage,
         setLoading,
-        urlCallback,
         values,
       }),
     handleToggleShowPassword: () =>

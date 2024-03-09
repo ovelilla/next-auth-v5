@@ -13,5 +13,4 @@ export type LoginHandlersPropsType = {
   setSuccessMessage: Dispatch<SetStateAction<string>>;
   setLoading: AuthStoreType["setLoading"];
   showPassword: boolean;
-  urlCallback: string | null;
 };

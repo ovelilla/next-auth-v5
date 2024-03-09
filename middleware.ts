@@ -23,6 +23,12 @@ export default auth((req) => {
   const isAuthRoute = authRoutes.includes(pathname);
 
   if (isApiRoute) {
+    const params = new URLSearchParams(nextUrl.search);
+    const error = params.get("error");
+
+    if (error) {
+      return NextResponse.redirect(new URL(`/login?error=${error}`, nextUrl));
+    }
     return NextResponse.next();
   }
 

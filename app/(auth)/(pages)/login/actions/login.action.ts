@@ -20,7 +20,6 @@ import { sendVerificationTokenEmail } from "../../../utils/email/send-verificati
 
 export const loginAction = async ({
   values,
-  urlCallback,
 }: LoginActionPropsType): Promise<LoginActionReturnType | undefined> => {
   const validatedFields = LoginSchema.safeParse(values);
 
@@ -110,7 +109,7 @@ export const loginAction = async ({
     await signIn("credentials", {
       email,
       password,
-      redirectTo: urlCallback || DEFAULT_LOGIN_REDIRECT,
+      redirectTo: DEFAULT_LOGIN_REDIRECT,
     });
   } catch (error) {
     if (error instanceof AuthError && error.type === "CredentialsSignin") {

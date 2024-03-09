@@ -11,6 +11,5 @@ export type SubmitHandlerPropsType = {
   setShowTwoFactor: Dispatch<SetStateAction<boolean>>;
   setSuccessMessage: Dispatch<SetStateAction<string>>;
   setLoading: AuthStoreType["setLoading"];
-  urlCallback: string | null;
   values: LoginFormValuesType;
 };

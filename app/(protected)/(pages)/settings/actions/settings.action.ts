@@ -67,7 +67,6 @@ export const settingsAction = async ({
 
     const hashedPassword = await bcrypt.hash(values.newPassword, 10);
     values.password = hashedPassword;
-    values.newPassword = undefined;
   }
 
   values.newPassword = undefined;

@@ -24,7 +24,6 @@ const LoginHook = (): LoginHookReturnType => {
   const { loading, setLoading } = useAuthStore();
 
   const searchParams = useSearchParams();
-  const urlCallback = searchParams.get("callbackUrl");
   const urlError = searchParams.get("error");
 
   const form = useForm<LoginFormValuesType>({
@@ -44,7 +43,6 @@ const LoginHook = (): LoginHookReturnType => {
     setShowTwoFactor,
     setSuccessMessage,
     showPassword,
-    urlCallback,
   });
 
   useEffect(() => {
